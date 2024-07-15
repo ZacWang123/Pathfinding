@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject Cell;
+    public GameGrid grid;
+
     void Start()
     {
-        
+        grid = new GameGrid(Cell);
+        grid.PopulateGrid();
+        grid.DrawGrid();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        grid.UpdateGridColour();
     }
 }
