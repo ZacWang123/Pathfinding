@@ -20,7 +20,7 @@ public class GameGrid
             for (int j = 0; j < Cols; j++)
             {
                 int num = Random.Range(0, 10);
-                if (num < 3) {
+                if (num < 2) {
                     Grid[i, j] = 1;
                 }
             }
@@ -58,13 +58,31 @@ public class GameGrid
                         Cell.material.color = new Color(0, 0, 0);
                         break;
                     case 2:
-                        Cell.material.color = new Color(255, 192, 203);
+                        Cell.material.color = new Color32(124, 252, 0, 255);
                         break;
                     case 3:
-                        Cell.material.color = new Color(255, 255, 0);
+                        Cell.material.color = new Color32(255, 0, 0, 255);
+                        break;
+                    case 4:
+                        Cell.material.color = new Color32(255, 255, 0, 255);
                         break;
                 }
             }
         }
+    }
+
+    public void UpdateGrid(int row, int col, int ID) {
+        Grid[row, col] = ID;
+    }
+
+    public bool WithinGrid(int row, int col) {
+        if (!(row >= 0 && row < Rows && col >= 0 && col < Cols)) {
+            return false;
+        }
+        return true;
+    }
+
+    public int GetCell(int row, int col) {
+        return Grid[row, col];
     }
 }
