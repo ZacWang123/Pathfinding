@@ -8,7 +8,7 @@ public class GameGrid
     public int Rows = 20, Cols = 20;
     public int[,] Grid;
     public GameObject GridCell;
-    public Renderer[,] VisualGrid;
+    public CellVisual[,] VisualGrid;
 
     public GameGrid(GameObject cell) {
         Grid = new int[Rows, Cols];
@@ -29,14 +29,15 @@ public class GameGrid
 
     public void DrawGrid()
     {
-        VisualGrid = new Renderer[Rows, Cols];
+        VisualGrid = new CellVisual[Rows, Cols];
 
         for (int rows = 0; rows < Rows; rows++)
         {
             for (int cols = 0; cols < Cols; cols++)
             {
-                GameObject Cell = Object.Instantiate(GridCell, new Vector2(rows, cols), Quaternion.identity);
-                VisualGrid[rows, cols] = Cell.GetComponent<Renderer>();
+                GameObject cell = Object.Instantiate(GridCell, new Vector2(rows, cols), Quaternion.identity);
+               
+                VisualGrid[rows, cols] = cell.GetComponent<CellVisual>();
             }
         }
     }
@@ -47,24 +48,27 @@ public class GameGrid
         {
             for (int cols = 0; cols < Cols; cols++)
             {
-                Renderer Cell = VisualGrid[rows, cols];
+                CellVisual cell = VisualGrid[rows, cols];
 
                 switch (Grid[rows, cols])
                 {
                     case 0:
-                        Cell.material.color = new Color(105, 105, 105);
+                        cell.spriteRenderer.material.color = new Color(105, 105, 105);
                         break;
                     case 1:
-                        Cell.material.color = new Color(0, 0, 0);
+                        cell.spriteRenderer.material.color = new Color(0, 0, 0);
                         break;
                     case 2:
-                        Cell.material.color = new Color32(124, 252, 0, 255);
+                        cell.spriteRenderer.material.color = new Color32(124, 252, 0, 255);
                         break;
                     case 3:
-                        Cell.material.color = new Color32(255, 0, 0, 255);
+                        cell.spriteRenderer.material.color = new Color32(255, 0, 0, 255);
                         break;
                     case 4:
-                        Cell.material.color = new Color32(255, 255, 0, 255);
+                        cell.spriteRenderer.material.color = new Color32(255, 255, 0, 255);
+                        break;
+                    case 5:
+                        cell.spriteRenderer.material.color = new Color32(255, 255, 204, 255);
                         break;
                 }
             }
